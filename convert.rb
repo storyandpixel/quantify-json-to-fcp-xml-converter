@@ -70,7 +70,6 @@ end
 #####################
 data = JSON.parse(File.read(JsonPath))
 
-start_time = Time.at(data['startDate'])
 data_points = add_end_dates_to_ratings(data['ratings'])
 
 data_point_hashes = data_points.map { |data_point| data_point_to_hash(data['startDate'], data_point) }
