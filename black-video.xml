@@ -1,0 +1,35 @@
+<file id="file-4">
+  <name>Black Video</name>
+  <mediaSource>Slug</mediaSource>
+  <rate>
+    <timebase>30</timebase>
+    <ntsc>TRUE</ntsc>
+  </rate>
+  <timecode>
+    <rate>
+      <timebase>30</timebase>
+      <ntsc>TRUE</ntsc>
+    </rate>
+    <string>00;00;00;00</string>
+    <frame>0</frame>
+    <displayformat>DF</displayformat>
+    <reel>
+      <name></name>
+    </reel>
+  </timecode>
+  <media>
+    <video>
+      <samplecharacteristics>
+        <rate>
+          <timebase>30</timebase>
+          <ntsc>TRUE</ntsc>
+        </rate>
+        <width>1920</width>
+        <height>1080</height>
+        <anamorphic>FALSE</anamorphic>
+        <pixelaspectratio>square</pixelaspectratio>
+        <fielddominance>none</fielddominance>
+      </samplecharacteristics>
+    </video>
+  </media>
+</file>
