@@ -12,9 +12,11 @@ end
 #####################
 ClipIn = 86313
 Fps = 24
+
 BlackVideoSnippet = File.read('black-video.xml')
 ClipItemTemplate = File.read('clip-item.xml.mustache')
 SequenceLayoutTemplate = File.read('sequence-layout.xml.mustache')
+
 RatingToColorMap = {
   0 => 'Iris',
   1 => 'Violet',
@@ -41,7 +43,6 @@ end
 
 def black_video_snippet_or_reference
   @black_video_snippet_called ||= false
-
   return '<file id="file-4"/>' if @black_video_snippet_called
   @black_video_snippet_called = true
   BlackVideoSnippet
