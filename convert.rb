@@ -2,8 +2,8 @@ require 'json'
 require 'mustache'
 require 'securerandom'
 
-unless ARGV.length == 2
-  puts 'Usage: convert.rb "Readdle Pre-Interview 1" "2015-07-24-Readdle-Pre-interview-1.json"'
+unless ARGV.length == 1
+  puts 'Usage: convert.rb "2015-07-24-Readdle-Pre-interview-1.json"'
   exit(1)
 end
 
@@ -24,8 +24,8 @@ RatingToColorMap = {
   3 => 'Mango'
 }
 
-SequenceName = ARGV[0]
-JsonPath = ARGV[1]
+JsonPath = ARGV[0]
+SequenceName = File.basename(JsonPath, '.*')
 
 #####################
 # Functions
@@ -77,9 +77,17 @@ data_point_hashes = data_points.map { |data_point| data_point_to_hash(data['star
 
 clip_item_snippets = data_point_hashes.map { |data_point_hash| Mustache.render(ClipItemTemplate, data_point_hash) }
 
-puts Mustache.render(SequenceLayoutTemplate, {
+fcp_sequence_xml = Mustache.render(SequenceLayoutTemplate, {
   sequence_id: SecureRandom.uuid,
   duration: data_point_hashes.last['clip_out'],
-  sequence_name: @sequence_name,
+  sequence_name: SequenceName,
   clip_items: clip_item_snippets.join("\n")
 })
+
+if ENV['QUANTIFY_EXPORT_FOLDER']
+  File.open(File.join(ENV['QUANTIFY_EXPORT_FOLDER'], SequenceName + '.xml'), 'w+') do |file|
+    file << fcp_sequence_xml
+  end
+end
+
+puts fcp_sequence_xml
