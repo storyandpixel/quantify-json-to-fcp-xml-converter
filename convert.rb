@@ -26,6 +26,8 @@ RatingToColorMap = {
 
 JsonPath = ARGV[0]
 SequenceName = File.basename(JsonPath, '.*')
+ExportFolder = ENV['QUANTIFY_EXPORT_FOLDER'] || File.dirname(JsonPath)
+DestinationFilename = File.join(ExportFolder, SequenceName + '.xml')
 
 #####################
 # Functions
@@ -69,6 +71,7 @@ end
 #####################
 # Implementation
 #####################
+puts '~> Parsing JSON file'
 data = JSON.parse(File.read(JsonPath))
 
 data_points = add_end_dates_to_ratings(data['ratings'])
@@ -77,6 +80,7 @@ data_point_hashes = data_points.map { |data_point| data_point_to_hash(data['star
 
 clip_item_snippets = data_point_hashes.map { |data_point_hash| Mustache.render(ClipItemTemplate, data_point_hash) }
 
+puts '~> Generating FCP XML'
 fcp_sequence_xml = Mustache.render(SequenceLayoutTemplate, {
   sequence_id: SecureRandom.uuid,
   duration: data_point_hashes.last['clip_out'],
@@ -84,10 +88,8 @@ fcp_sequence_xml = Mustache.render(SequenceLayoutTemplate, {
   clip_items: clip_item_snippets.join("\n")
 })
 
-if ENV['QUANTIFY_EXPORT_FOLDER']
-  File.open(File.join(ENV['QUANTIFY_EXPORT_FOLDER'], SequenceName + '.xml'), 'w+') do |file|
-    file << fcp_sequence_xml
-  end
+puts '~> Writing FCP XML file'
+File.open(DestinationFilename, 'w+') do |file|
+  file << fcp_sequence_xml
 end
-
-puts fcp_sequence_xml
+puts "~> FCP XMP file written to #{DestinationFilename}"
