@@ -9,10 +9,10 @@ Convert JSON data exported from Quantify to FCP XML format.
 
 ### First-time Setup
 
-Launch Terminal.app (in /Applications/Utilities). Copy-paste the following into the Terminal window:
+Launch Terminal.app (in /Applications/Utilities). Copy-paste the following into the Terminal window and press enter after the Terminal comes to rest on the last line:
 
 ```sh
-curl https://github.com/storyandpixel/quantify-json-to-fcp-xml-converter/archive/master.zip --output quantify-json-converter.zip
+curl -L https://github.com/storyandpixel/quantify-json-to-fcp-xml-converter/archive/master.zip --output quantify-json-converter.zip
 unzip quantify-json-converter.zip
 cd quantify-json-to-fcp-xml-converter-master/
 sudo gem install bundler
