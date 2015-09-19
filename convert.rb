@@ -88,8 +88,7 @@ fcp_sequence_xml = Mustache.render(SequenceLayoutTemplate, {
   clip_items: clip_item_snippets.join("\n")
 })
 
-puts '~> Writing FCP XML file'
+puts "~> Writing FCP XML file to #{DestinationFilename}"
 File.open(DestinationFilename, 'w+') do |file|
   file << fcp_sequence_xml
 end
-puts "~> FCP XMP file written to #{DestinationFilename}"
