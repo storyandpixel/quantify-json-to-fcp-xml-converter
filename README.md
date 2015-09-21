@@ -17,7 +17,9 @@ unzip quantify-json-converter.zip
 cd quantify-json-to-fcp-xml-converter-master/
 ```
 
-The above commands downloaded the script and extracted it to a folder. The `cd` command put you inside that new folder. Now you will run a command that will install some other scripts that our script depends on. The first command installs a system-wide tool. OS X requires you to enter your password to install system-wide tools, and you'll be prompted for your password. Enter the same password you would use to log on to your Mac.
+The above commands downloaded the script and extracted it to a folder. The `cd` command put you inside that new folder. Now you will run a command that will install some other scripts that our script depends on.
+
+The command below installs a system-wide tool. OS X requires you to enter your password to install system-wide tools, so you'll be prompted for your password. Enter the same password you would use to log on to your Mac.
 
 Copy-paste the following, press enter, then type your login password and press enter again:
 
