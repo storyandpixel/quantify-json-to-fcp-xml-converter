@@ -19,9 +19,9 @@ SequenceLayoutTemplate = File.read('sequence-layout.xml.mustache')
 
 RatingToColorMap = {
   0 => 'Iris',
-  1 => 'Violet',
-  2 => 'Forest',
-  3 => 'Mango'
+  1 => 'Rose',
+  2 => 'Cerulean',
+  3 => 'Violet'
 }
 
 JsonPath = ARGV[0]
